@@ -4,7 +4,9 @@ import styles from './Home.module.css'
 
 function Home() {
     return <>
-    <p>heloo</p>
+        <header>
+            
+        </header>
     </>
 }
 

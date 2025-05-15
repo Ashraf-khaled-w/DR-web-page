@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Navbar.module.css'
+import NavElement from '../UI/NavElement/NavElement'
 
 
 function Navbar() {
@@ -9,12 +10,11 @@ function Navbar() {
             Logo
         </div>
         <ul className='flex space-x-4'>
-            <li>الصفحة الرئيسية</li>
-            <li>عن الدكتور</li>
-            <li>الخدمات الطبية</li>
-            <li>آراء المرضى</li>
-            <li>تواصل معانا</li>
-            <li>حجز استشارة</li>
+            <NavElement path='root'>الصفحة الرئيسية</NavElement>
+            <NavElement path='root'> عن الدكتور</NavElement>
+            <NavElement path='root'>الخدمات</NavElement>
+            <NavElement path='root'>تواصل معانا</NavElement>
+            <NavElement path='root' className={`bg-amber-700 text-white`}>حجز استشارة</NavElement>
         </ul>
     </nav>
     </>
