@@ -7,7 +7,7 @@ function Navbar() {
     return <>
     <nav className='flex justify-between align-baseline items-center w-screen h-[50px] shadow bg-gray-100 px-4'>
         <div className="logo">
-            Logo
+            Dr/ Mohamed El-Sayed Abdel-Aal
         </div>
         <ul className='flex space-x-4'>
             <NavElement path='root'>الصفحة الرئيسية</NavElement>
