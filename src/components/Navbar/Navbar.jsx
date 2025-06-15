@@ -14,6 +14,7 @@ function Navbar() {
             <NavElement path='/about'> عن الدكتور</NavElement>
             <NavElement path='/service'>الخدمات</NavElement>
             <NavElement path='/contact'>تواصل معانا</NavElement>
+            <NavElement path='/blog'> مدونه</NavElement>
             <NavElement path='root' className={`bg-[#309898] text-white px-2`}>حجز استشارة</NavElement>
         </ul>
     </nav>
