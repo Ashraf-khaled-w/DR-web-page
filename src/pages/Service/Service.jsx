@@ -13,7 +13,10 @@ import Vaccinations from '../../assets/Vaccinations.png'
 function Service() {
     return <>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 p-5 mx-auto'>
+        <div className='py-5'>
+            <h1 className='text-3xl font-extrabold text-[#309898] mb-8 text-center tracking-tight drop-shadow'>خدماتنا</h1>
+
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 px-5 mx-auto'>
             <div className='flex flex-col items-center bg-[#309898]/10 rounded-xl p-6 shadow hover:shadow-lg transition-shadow border border-[#309898]/20'>
                 <div className='w-14 h-14 flex items-center justify-center rounded-full bg-[#309898] mb-4'>
                     <span className='text-white text-2xl p-2'><img src={liver} alt="Liver diseases" /></span>
@@ -104,6 +107,8 @@ function Service() {
               </div>
             </div>
         </div>
+    </div>
+        
     
     </>
 }
