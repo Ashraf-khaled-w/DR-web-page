@@ -24,7 +24,7 @@ function Layout({ children }) {
     return (
         <div className={styles.layoutContainer}>
             <Navbar />
-            <main className={styles.mainContent}>
+            <main className={`${styles.mainContent} h-[100vh]`}>
                 <Outlet></Outlet>
             </main>
             <Footer />
