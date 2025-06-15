@@ -31,7 +31,14 @@ function Header() {
   
     return (
       <>
-        <header className="w-full py-8 px-4 flex flex-col-reverse lg:flex-row items-center justify-between gap-8 shadow-lg overflow-hidden ">
+        <header  style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url(${wallpaper})`,
+              backdropFilter: 'blur(8px)',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat'
+            }}
+  className="w-full bg-gradient-to-l from-[#FA812F] to-[#309898] py-8 px-4 flex flex-col-reverse lg:flex-row items-center justify-between gap-8 shadow-lg overflow-hidden">
           <div className="flex flex-col justify-center items-center text-center flex-1">
             <h1 className="text-4xl md:text-5xl font-extrabold italic text-white drop-shadow py-2 mb-2">
               د/ محمد السيد عبد العال
