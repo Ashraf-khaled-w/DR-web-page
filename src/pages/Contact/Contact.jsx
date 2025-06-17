@@ -21,7 +21,7 @@ function Contact() {
         setIsSubmitted(true)
         setIsLoading(true)
         try{
-            const response= await axios.post('https://doctoregister-69a992wdj-hadeerabdelgawads-projects.vercel.app/', formsData)
+            const response= await axios.post('https://doctoregister-69a992wdj-hadeerabdelgawads-projects.vercel.app/api/order', formsData)
             console.log(response.data);
             if(response.data.success){
                 toast.success('تم ارسال الطلب بنجاح')
