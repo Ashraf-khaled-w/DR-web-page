@@ -21,19 +21,15 @@ function Contact() {
         setIsSubmitted(true)
         setIsLoading(true)
         try{
-            const response= await axios.post('https://send-email-sage-five.vercel.app/', formsData)
+            const response= await axios.post('https://doctoregister-69a992wdj-hadeerabdelgawads-projects.vercel.app/', formsData)
             console.log(response.data);
             if(response.data.success){
-                toast.success('تم ارسال الطلب بنجاح', {
-                    position: 'top-right'
-                })
+                toast.success('تم ارسال الطلب بنجاح')
                 formik.resetForm()
             }
         }catch(error){
             console.error('Error sending email:', error);
-            toast.error('حدث خطأ أثناء إرسال الطلب', {
-                position: 'top-right'
-            })
+            toast.error('حدث خطأ أثناء إرسال الطلب')
         }finally{
             setIsLoading(false)
         }
