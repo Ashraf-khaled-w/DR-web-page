@@ -15,7 +15,7 @@ function Navbar() {
             <NavElement path='/service'>الخدمات</NavElement>
             <NavElement path='/contact'>تواصل معانا</NavElement>
             <NavElement path='/blog'> مدونه</NavElement>
-            <NavElement path='root' className={`bg-[#309898] text-white`}>حجز استشارة</NavElement>
+            <NavElement path='/contact' className={`bg-[#309898] text-white`}>حجز استشارة</NavElement>
         </ul>
     </nav>
     </>

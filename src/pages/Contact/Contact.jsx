@@ -1,11 +1,76 @@
 import React, { useState } from 'react'
 import styles from './Contact.module.css'
 import whatsapp from '../../assets/whatsapp.png'
+import * as yup from 'yup'
+import { useFormik } from 'formik'
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import Loader from '../../components/UI/Loader/Loader'
+import Form from '../../components/Form/Form'
+
 
 
 function Contact() {
 
     const [ activeTab, setActiveTab ] = useState('clinic1')
+    const [ isLoading, setIsLoading ] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
+
+     const handleSendRegister=async(formsData)=>{
+        setIsSubmitted(true)
+        setIsLoading(true)
+        try{
+            const response= await axios.post('https://send-email-sage-five.vercel.app/', formsData)
+            console.log(response.data);
+            if(response.data.success){
+                toast.success('تم ارسال الطلب بنجاح', {
+                    position: 'top-right'
+                })
+                formik.resetForm()
+            }
+        }catch(error){
+            console.error('Error sending email:', error);
+            toast.error('حدث خطأ أثناء إرسال الطلب', {
+                position: 'top-right'
+            })
+        }finally{
+            setIsLoading(false)
+        }
+    }
+    
+    const validationSchema = yup.object({
+        userName: yup.string().required('الاسم مطلوب').min(2, 'الاسم قصير جدا').max(50, 'الاسم طويل جدا'),
+        email: yup.string().email('البريد الالكتروني غير صحيح').required('البريد الالكتروني مطلوب'),
+        services: yup.string().required('الخدمة مطلوبة'),
+        phoneNumber: yup.string().required('رقم الهاتف مطلوب').matches(/^01[1205][0-9]{8}$/, 'رقم الهاتف غير صحيح')
+    })
+
+    const formik = useFormik({
+        initialValues:{
+            userName:'',
+            email:'',
+            services:'',
+            phoneNumber:'',
+            clinicName: activeTab === 'clinic1' ? 'عيادة 1' : activeTab === 'clinic2' ? 'عيادة 2' :
+            activeTab === 'clinic3' ? 'عيادة 3' : 'عيادة 4'
+        },
+        validationSchema: validationSchema,
+        onSubmit: handleSendRegister
+    })
+
+   
+
+    if(isSubmitted){
+        if(isLoading){
+            return <div className='flex items-center justify-center h-screen'>
+                <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#309898]">
+                    <Loader/>
+                </div>
+            </div>
+
+        }
+    }
     return <>
 
         <div className='max-w-5xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-xl border border-gray-100'>
@@ -167,47 +232,13 @@ function Contact() {
                     <i className="fa-regular fa-calendar-check text-[#309898]"></i>
                 </h2>
                 <p className="text-gray-700 mb-4 text-right">وفر لنا الخدمة التى تريدها وسيتم التواصل معك لتأكيد المعاد</p>
-                <form className="space-y-4">
-                    <input
-                    type="text"
-                    placeholder="الاسم"
-                    className="w-full p-3 border border-[#309898]/30 rounded-lg focus:border-[#309898] focus:ring-2 focus:ring-[#309898]/20 transition text-right"
-                    />
-                    <input
-                    type="email"
-                    placeholder="البريد الالكتروني"
-                    className="w-full p-3 border border-[#309898]/30 rounded-lg focus:border-[#309898] focus:ring-2 focus:ring-[#309898]/20 transition text-right"
-                    />
-                    <input
-                    type="text"
-                    placeholder="رقم الهاتف"
-                    className="w-full p-3 border border-[#309898]/30 rounded-lg focus:border-[#309898] focus:ring-2 focus:ring-[#309898]/20 transition text-right"
-                    />
-                    <select
-                    name="service"
-                    id="service"
-                    defaultValue=""
-                    className="w-full p-3 border border-[#309898]/30 rounded-lg text-right bg-white focus:border-[#309898] focus:ring-2 focus:ring-[#309898]/20 transition"
-                    >
-                    <option value="" disabled hidden>
-                        اختر نوع الخدمة
-                    </option>
-                    <option value="liver">استشارات أمراض الكبد</option>
-                    <option value="diabetics">متابعة مرضى السكر</option>
-                    <option value="digestive_system">فحوصات الجهاز الهضمي</option>
-                    <option value="ayalsis">تحاليل طبية شاملة</option>
-                    <option value="blood_pressure">ضغط الدم وأمراض الباطنة</option>
-                    <option value="nutritional">استشارات غذائية</option>
-                    <option value="medical_scopes">مناظير</option>
-                    <option value="vaccinations">تطعيمات</option>
-                    </select>
-                    <button
-                    type="submit"
-                    className="w-full bg-[#309898] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#FA812F] hover:cursor-pointer transition duration-300 text-lg"
-                    >
-                    ارسال
-                    </button>
-                </form>
+                <Form 
+                    onSubmit={formik.handleSubmit}
+                    values={formik.values}
+                    handleChange={formik.handleChange}
+                    handleBlur={formik.handleBlur}
+                    errors={formik.errors}
+                    touched={formik.touched}/>
                 </div>
         </div>
         

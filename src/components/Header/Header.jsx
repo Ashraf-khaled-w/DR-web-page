@@ -49,7 +49,7 @@ function Header() {
             <div className="py-2 flex flex-col items-center gap-2">
               <span className="text-[#FA812F] text-2xl px-2 italic">تواصل معانا</span>
               <NavLink to={'/contact'}>
-                <button className="flex items-center gap-2 bg-[#309898] hover:bg-[#FA812F] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-200 text-xl">
+                <button className="flex items-center gap-2 bg-[#309898] hover:bg-[#FA812F] hover:cursor-pointer text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-200 text-xl">
                   <i className="fa-solid fa-phone-volume fa-shake"></i>
                   احجز استشارتك الآن
                 </button>
